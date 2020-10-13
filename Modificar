@@ -1,0 +1,19 @@
+private void modificar()
+        {
+            string connection = "datasource=localhost;port=3306;username=root;password=;database=db";
+            string query= "UPDATE botones SET first_name='" + textBox1.Text + "',last_name='" + textBox2.Text + "',address='" + textBox3.Text + "' WHERE id='" + textBox4.Text + "' ";
+            MySqlConnection conectionDatabase = new MySqlConnection(connection);
+            MySqlCommand databaseCommand = new MySqlCommand(query, conectionDatabase);
+            databaseCommand.CommandTimeout = 60;
+
+            try
+            {
+                conectionDatabase.Open();
+                MySqlDataReader reader1 = databaseCommand.ExecuteReader();
+                MessageBox.Show("Lograste Modificar el dato, eres un Crack");
+                conectionDatabase.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
